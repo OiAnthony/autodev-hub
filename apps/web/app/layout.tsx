@@ -1,7 +1,8 @@
 import "@workspace/ui/globals.css";
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import { Providers } from "@/components/providers";
+import { Providers } from "@/components/layouts/dashboard/providers";
+import DashboardLayout from "@/components/layouts/dashboard";
 
 
 export default function RootLayout({
@@ -14,7 +15,11 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased `}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <DashboardLayout>
+            {children}
+          </DashboardLayout>
+        </Providers>
       </body>
     </html>
   );
