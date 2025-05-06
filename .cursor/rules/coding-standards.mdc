@@ -1,0 +1,86 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 代码标准和最佳实践
+
+## 命名规范
+
+- **文件夹**：使用小写字母，多词使用连字符（kebab-case）：`user-profile`
+- **React 组件**：使用 PascalCase：`UserProfile.tsx`
+- **工具/辅助函数**：使用 camelCase：`formatDate.ts`
+- **类型/接口**：使用 PascalCase 并添加前缀：`type UserData` 或 `interface UserProps`
+- **常量**：使用大写字母和下划线：`MAX_RETRY_COUNT`
+
+## 代码组织
+
+### 组件结构
+
+组件应遵循以下结构：
+
+```typescript
+// 1. 导入
+import { useState } from 'react'
+
+// 2. 类型定义
+interface ButtonProps {
+  variant: 'primary' | 'secondary'
+  onClick: () => void
+  children: React.ReactNode
+}
+
+// 3. 辅助函数（如果需要）
+const getButtonStyles = (variant: ButtonProps['variant']) => {
+  // ...
+}
+
+// 4. 组件定义
+export function Button({ variant, onClick, children }: ButtonProps) {
+  // ...
+}
+```
+
+### 目录结构
+
+- **组件**：`components/[组件名]/index.tsx`
+- **页面**：`pages/[页面路径].tsx`
+- **API**：`api/[资源].ts`
+- **Hooks**：`hooks/use[名称].ts`
+- **工具函数**：`utils/[分类]/[函数名].ts`
+- **类型定义**：`types/[模块].ts`
+
+## 最佳实践
+
+### React 组件
+
+- 优先使用函数组件和 Hooks
+- 为组件编写明确的 Props 接口
+- 解构 Props 以提高可读性
+- 对复杂组件使用组合而非继承
+- 避免过深的组件嵌套（最好不超过3层）
+
+### TypeScript
+
+- 避免使用 `any` 类型，优先使用 `unknown` 或具体类型
+- 使用类型推断减少冗余类型注释
+- 为函数和组件提供明确的返回类型
+- 使用类型别名（`type`）定义联合类型和简单对象
+- 使用接口（`interface`）定义可扩展的对象结构
+
+### 状态管理
+
+- 使用适当的状态管理方案：
+  - 组件局部状态：`useState`/`useReducer`
+  - 跨组件共享：Context API 或状态管理库
+- 避免过度使用全局状态
+- 将相关状态封装在自定义 Hooks 中
+
+### 性能优化
+
+- 使用 `useMemo` 和 `useCallback` 避免不必要的重新计算和渲染
+- 为列表项提供唯一且稳定的 `key`
+- 拆分大型组件为小型可复用组件
+- 使用懒加载（`React.lazy`）和代码分割
+
+以上标准应当在整个项目中一致应用，以确保代码的可维护性和可读性。

@@ -1,0 +1,84 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# UI 组件库指南
+
+## 组件库概述
+
+本项目使用基于 [shadcn/ui](https://ui.shadcn.com/) 的组件库，这是一套可定制的组件集合，而非传统意义上的组件库。主要特点：
+
+- 组件代码直接复制到项目中，便于自定义
+- 基于 [Radix UI](https://www.radix-ui.com/) 原语，确保可访问性
+- 使用 [Tailwind CSS](https://tailwindcss.com/) 进行样式设计
+- 支持暗色模式和主题定制
+
+## 组件使用流程
+
+1. 组件源码位于 [packages/ui/src/components](mdc:packages/ui/src/components) 目录
+2. 在应用中引入组件：`import { Button } from "@workspace/ui"`
+3. 按需配置组件属性和样式
+
+## 新增组件
+
+添加新组件到组件库的步骤：
+
+1. 在 `packages/ui/src/components` 创建组件目录
+2. 实现组件代码，确保类型定义完整
+3. 在 `packages/ui/src/index.ts` 导出组件
+4. 为组件编写简洁的使用文档
+
+## 组件定制
+
+对现有组件进行定制的最佳实践：
+
+1. 不要直接修改原始组件，而是创建新的变体
+2. 使用 Tailwind 的 `className` 属性进行样式覆盖
+3. 对于复杂定制，使用组合模式（Composition）而非继承
+4. 确保组件保持良好的可访问性（A11y）
+
+## 组件变体
+
+为组件创建变体的方法：
+
+```tsx
+import { cn } from "@workspace/ui/utils"
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "destructive" | "outline" | "custom"
+  // 其他属性...
+}
+
+export function Button({ 
+  className, 
+  variant = "default", 
+  ...props 
+}: ButtonProps) {
+  return (
+    <button
+      className={cn(
+        "base-styles",
+        variant === "default" && "default-styles",
+        variant === "destructive" && "destructive-styles",
+        variant === "outline" && "outline-styles",
+        variant === "custom" && "custom-styles",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+```
+
+## 设计原则
+
+组件设计应遵循以下原则：
+
+- **一致性**：保持视觉和交互的一致性
+- **可访问性**：确保组件符合 WCAG 标准
+- **响应式**：适应不同屏幕尺寸
+- **性能优化**：避免不必要的渲染
+- **可扩展性**：便于扩展和定制
+
+遵循这些原则可确保 UI 组件的质量和可用性。

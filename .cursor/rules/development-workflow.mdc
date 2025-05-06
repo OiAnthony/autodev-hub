@@ -1,0 +1,41 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 开发工作流程
+
+## 常用命令
+
+本项目使用 pnpm 作为包管理器，并结合 TurboRepo 进行工作流管理。以下是常用命令：
+
+- 安装依赖：`pnpm install`
+- 开发模式：`pnpm dev` - 启动所有应用和包的开发服务器
+- 构建项目：`pnpm build` - 构建所有应用和包
+- 代码检查：`pnpm lint` - 运行 ESLint 检查所有代码
+- 代码修复：`pnpm lint:fix` - 自动修复可修复的 lint 问题
+- 格式化代码：`pnpm format` - 使用 Prettier 格式化代码
+- 更新依赖：`pnpm bump` - 更新所有子包的依赖
+
+## 开发新功能
+
+1. 运行 `pnpm dev` 启动开发服务器
+2. 在 `apps/web` 目录中开发 Web 应用功能
+3. 如需开发共享组件，在 `packages/ui` 目录中进行
+4. 提交代码前运行 `pnpm lint` 和 `pnpm build` 确保代码质量和构建成功
+
+## 依赖管理
+
+- 全局依赖添加到根 `package.json`
+- 应用特定依赖添加到相应应用的 `package.json`
+- 引用工作区内其他包使用 `workspace:*` 版本标识符
+- 添加依赖示例：`pnpm add -D typescript`（根目录）或 `pnpm add react --filter @workspace/web`（特定包）
+
+## TypeScript 和 ESLint
+
+项目使用共享的 TypeScript 和 ESLint 配置：
+
+- [packages/typescript-config](mdc:packages/typescript-config)：包含可继承的 TS 配置
+- [packages/eslint-config](mdc:packages/eslint-config)：包含可共享的 ESLint 规则
+
+各应用和包继承这些基础配置，保证代码风格一致性。
