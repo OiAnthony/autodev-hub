@@ -133,6 +133,7 @@ pnpm bump
 
 ## 🚀 Roadmap
 
+- [ ] apps/web: sidebar routes and docs
 - [ ] packages/db: Integrate Drizzle ORM
 - [ ] packages/auth: Integrate better auth
 - [ ] apps/api: hono.js + Drizzle ORM + better auth + oRPC
