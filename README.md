@@ -131,6 +131,12 @@ pnpm format
 pnpm bump
 ```
 
+## 🚀 Roadmap
+
+- [ ] Integrate Drizzle ORM
+- [ ] Integrate better auth
+- [ ] Improve: lint & format & pre-commit (husky & commit-lint)
+
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
