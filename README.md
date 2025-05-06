@@ -133,8 +133,9 @@ pnpm bump
 
 ## 🚀 Roadmap
 
-- [ ] Integrate Drizzle ORM
-- [ ] Integrate better auth
+- [ ] packages/db: Integrate Drizzle ORM
+- [ ] packages/auth: Integrate better auth
+- [ ] apps/api: hono.js + Drizzle ORM + better auth + oRPC
 - [ ] Improve: lint & format & pre-commit (husky & commit-lint)
 
 ## 📄 License
